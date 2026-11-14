@@ -1,0 +1,661 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b0b0b">
+<title>Javier Peñúñuri | Specialty Coffee</title>
+
+<style>
+:root {
+  --bg: #0b0b0b;
+  --white: #f2f0eb;
+  --muted: #99958d;
+  --coffee: #a77b55;
+  --line: #292723;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img, video {
+  display: block;
+  width: 100%;
+}
+
+/* NAVIGATION */
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(11,11,11,.88);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  font-size: 13px;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--muted);
+  transition: color .3s;
+}
+
+.nav-links a:hover {
+  color: var(--white);
+}
+
+/* GENERAL */
+
+.container {
+  width: 86%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+section {
+  padding: 120px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.eyebrow {
+  color: var(--coffee);
+  font-size: 10px;
+  letter-spacing: 4px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: clamp(30px, 5vw, 48px);
+  font-weight: 400;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  margin-bottom: 35px;
+}
+
+p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+/* ANIMATIONS */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HERO */
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 100px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: clamp(45px, 7vw, 85px);
+  line-height: .95;
+  letter-spacing: -5px;
+  font-weight: 700;
+  margin-bottom: 25px;
+  animation: appear 1s ease both;
+}
+
+.hero h1 span {
+  color: var(--coffee);
+}
+
+.hero-description {
+  max-width: 430px;
+  margin-bottom: 35px;
+  animation: appear 1s .2s ease both;
+}
+
+.hero-image {
+  height: 470px;
+  object-fit: cover;
+  filter: grayscale(15%);
+  animation: appear 1s .3s ease both;
+}
+
+.button {
+  display: inline-block;
+  border: 1px solid var(--coffee);
+  padding: 13px 25px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: background .3s, color .3s;
+}
+
+.button:hover {
+  background: var(--coffee);
+  color: #000;
+}
+
+/* PROFILE */
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+}
+
+.profile-grid p {
+  max-width: 500px;
+}
+
+/* VIDEO */
+
+.video-wrapper {
+  width: 100%;
+  max-width: 850px;
+  margin: 0 auto;
+  background: #151515;
+  overflow: hidden;
+}
+
+.video-wrapper video {
+  max-height: 600px;
+  object-fit: cover;
+}
+
+.video-caption {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 18px;
+  gap: 20px;
+}
+
+/* SKILLS */
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.skill {
+  background: var(--bg);
+  padding: 35px 25px;
+  transition: background .3s;
+}
+
+.skill:hover {
+  background: #171411;
+}
+
+.skill h3 {
+  font-size: 15px;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+/* EXPERIENCE */
+
+.experience {
+  border-top: 1px solid var(--line);
+}
+
+.job {
+  display: flex;
+  justify-content: space-between;
+  gap: 25px;
+  padding: 30px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.job h3 {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.job-date {
+  color: var(--coffee);
+  font-size: 11px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* GALLERY */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.gallery img {
+  height: 350px;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: filter .5s, transform .5s;
+}
+
+.gallery img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.015);
+}
+
+/* CONTACT */
+
+.contact {
+  text-align: center;
+}
+
+.contact h2 {
+  margin-bottom: 20px;
+}
+
+.contact-info {
+  margin-top: 35px;
+}
+
+.contact-info p {
+  margin: 8px 0;
+}
+
+footer {
+  padding: 30px 7%;
+  text-align: center;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+  nav {
+    padding: 18px 6%;
+  }
+
+  .nav-links {
+    gap: 12px;
+  }
+
+  .nav-links a {
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .hero-grid,
+  .profile-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .hero {
+    padding-top: 130px;
+  }
+
+  .hero h1 {
+    letter-spacing: -3px;
+  }
+
+  .hero-image {
+    height: 420px;
+  }
+
+  section {
+    padding: 85px 0;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .gallery img {
+    height: 230px;
+  }
+
+  .job {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .video-caption {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+  <a href="#inicio" class="logo">JPA.</a>
+
+  <div class="nav-links">
+    <a href="#perfil">PERFIL</a>
+    <a href="#video">V60</a>
+    <a href="#experiencia">EXPERIENCIA</a>
+    <a href="#contacto">CONTACTO</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+
+<header class="hero container" id="inicio">
+  <div class="hero-grid">
+
+    <div>
+      <div class="eyebrow">SPECIALTY COFFEE / BARISTA</div>
+
+      <h1>JAVIER<br>PEÑÚÑURI<br><span>ANDRADE.</span></h1>
+
+      <p class="hero-description">
+        Barista enfocado en café de especialidad,
+        preparación manual y desarrollo de experiencias
+        alrededor del café.
+      </p>
+
+      <a href="#perfil" class="button">
+        CONOCE MI TRABAJO
+      </a>
+    </div>
+
+    <img
+      src="foto-javier.jpg"
+      alt="Javier Peñúñuri, barista"
+      class="hero-image"
+    >
+
+  </div>
+</header>
+
+<!-- PROFILE -->
+
+<section id="perfil">
+  <div class="container reveal">
+
+    <div class="eyebrow">01 / SOBRE MÍ</div>
+
+    <div class="profile-grid">
+      <h2>Más que preparar café, entenderlo.</h2>
+
+      <p>
+        Mi interés por el café de especialidad nace de la
+        combinación entre técnica, ciencia y hospitalidad.
+
+        Me interesa comprender las variables que intervienen
+        en cada preparación, desde la molienda y la temperatura
+        hasta la extracción y el resultado en taza.
+
+        Busco desarrollar constantemente mis habilidades
+        detrás de la barra y ofrecer experiencias cuidadas
+        para cada cliente.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- V60 VIDEO -->
+
+<section id="video">
+  <div class="container reveal">
+
+    <div class="eyebrow">02 / BREWING PROCESS</div>
+
+    <h2>Manual brewing.<br>V60 preparation.</h2>
+
+    <div class="video-wrapper">
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        poster="v60-poster.jpg"
+      >
+        <source src="v60.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video.
+      </video>
+    </div>
+
+    <div class="video-caption">
+      <p>Preparación manual / Hario V60</p>
+      <p>EXTRACCIÓN · PRECISIÓN · CONSISTENCIA</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+
+<section id="habilidades">
+  <div class="container reveal">
+
+    <div class="eyebrow">03 / SKILLS & KNOWLEDGE</div>
+
+    <h2>Technical skills.</h2>
+
+    <div class="skills-grid">
+
+      <div class="skill">
+        <h3>Manual brewing</h3>
+        <p>V60, AeroPress, prensa francesa y métodos de inmersión.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Espresso</h3>
+        <p>Preparación, calibración y consistencia en extracción.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Grind & extraction</h3>
+        <p>Molienda, proporciones, temperatura y variables de extracción.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Beverage preparation</h3>
+        <p>Preparación de bebidas calientes y frías.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Customer experience</h3>
+        <p>Atención al cliente y comunicación detrás de la barra.</p>
+      </div>
+
+      <div class="skill">
+        <h3>Workflow & hygiene</h3>
+        <p>Organización, limpieza y operación de barra.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+
+<section id="experiencia">
+  <div class="container reveal">
+
+    <div class="eyebrow">04 / PROFESSIONAL EXPERIENCE</div>
+
+    <h2>Experiencia.</h2>
+
+    <div class="experience">
+
+      <div class="job">
+        <div>
+          <h3>Goyo Real Coffee</h3>
+          <p>Barista</p>
+        </div>
+        <div class="job-date">FEB 2026 — ACTUAL</div>
+      </div>
+
+      <div class="job">
+        <div>
+          <h3>Café Autor</h3>
+          <p>Barista</p>
+        </div>
+        <div class="job-date">EXPERIENCIA ANTERIOR</div>
+      </div>
+
+      <div class="job">
+        <div>
+          <h3>Casa Alicia</h3>
+          <p>Barista / Servicio</p>
+        </div>
+        <div class="job-date">EXPERIENCIA ANTERIOR</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+
+<section id="galeria">
+  <div class="container reveal">
+
+    <div class="eyebrow">05 / SELECTED WORK</div>
+
+    <h2>Visual archive.</h2>
+
+    <div class="gallery">
+      <img src="casaaliciaexp.jpg" alt="Trabajo en cafetería">
+      <img src="coffee-02.jpg" alt="Preparación de café">
+      <img src="coffee-03.jpg" alt="Barra de café">
+      <img src="coffee-04.jpg" alt="Café de especialidad">
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+
+<section id="contacto">
+  <div class="container reveal contact">
+
+    <div class="eyebrow">06 / GET IN TOUCH</div>
+
+    <h2>Let's talk coffee.</h2>
+
+    <p>Disponible para oportunidades profesionales y proyectos.</p>
+
+    <div class="contact-info">
+      <p>jpenunuri09@gmail.com</p>
+      <p>662 369 2068</p>
+      <p>Hermosillo, Sonora, México</p>
+    </div>
+
+    <br>
+
+    <a href="mailto:jpenunuri09@gmail.com" class="button">
+      CONTACTAR
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  JAVIER PEÑÚÑURI ANDRADE / 2026
+</footer>
+
+<!-- SCROLL ANIMATIONS -->
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.15
+});
+
+document.querySelectorAll('.reveal').forEach(element => {
+  observer.observe(element);
+});
+</script>
+
+</body>
+</html>
+
+
+
